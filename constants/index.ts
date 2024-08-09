@@ -15,7 +15,7 @@ export const sidebarLinks = [
       label: "Create Podcast",
     },
     {
-      imgURL: "/icons/price-tag.png",
+      imgURL: "/icons/price-tag.svg",
       route: "/pricing",
       label: "Subscriptions",
     },
