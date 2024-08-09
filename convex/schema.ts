@@ -28,7 +28,14 @@ export default defineSchema({
         imageUrl: v.string(),
         name: v.string(),
         clerkId: v.string(),
-       
+        stripeCustomerId: v.optional(v.string()), 
+      }),
+      
+      subscriptions: defineTable({
+        userId: v.id('users'),
+        stripeSubscriptionId: v.string(),
+        status: v.string(),
+        
       })
       
 })

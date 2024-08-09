@@ -1,7 +1,38 @@
+"use client"
 import { cardData } from '@/constants';
 import React from 'react';
+import { loadStripe } from '@stripe/stripe-js';
 
-const PricingCard = () => {
+import { useState } from 'react';
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
+
+const PricingCard = ({ priceId }: { priceId: string }) => {
+  
+    const [loading, setLoading] = useState(false);
+  
+    const handleCheckout = async () => {
+      setLoading(true);
+      const stripe = await stripePromise;
+  
+      try {
+        const response = await fetch('/api/checkout_sessions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ priceId }),
+        });
+  
+        const { url } = await response.json();
+        window.location.href = url;
+      } catch (error) {
+        console.error('Error redirecting to checkout:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+  
     return (
         <div className="w-full py-[5rem] md:py-[8rem] px-4 text-gray-900">
           <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 gap-8 text-white-1">
@@ -28,7 +59,7 @@ const PricingCard = () => {
                   </div>
                   {index !== 0 && ( 
                                 <div className="flex justify-center">
-                                    <button
+                                    <button onClick={(e)=>handleCheckout()}
                                         className="bg-whitetext-white hover:bg-orange-1 hover:text-white duration-150 w-full rounded-md font-medium my-6 py-3 transition-colors"  >
                                         Start Trial
                                     </button>
