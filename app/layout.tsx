@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import  ConvexClerkProvider  from "./providers/ConvexClerkProvider";
+import { Manrope } from "next/font/google";
+import "./globals.css"
+import ConvexClerkProvider from "./providers/ConvexClerkProvider";
+import AudioProvider from "./providers/AudioProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Podcastr",
-  description: "Generate Podcasts using AI",
-  icons:{
+  description: "Generate your podcasts using AI",
+  icons: {
     icon: '/icons/logo.svg'
   }
 };
@@ -19,12 +21,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html  className="dark" lang="en">
-      <body className={inter.className}>
-       <ConvexClerkProvider>
-          {children}  
-        </ConvexClerkProvider> 
-        </body>
-    </html>
+    <ConvexClerkProvider>
+      <html lang="en">
+       <AudioProvider>
+
+          <body className={`md:overflow-hidden${manrope.className}`}>
+              {children}
+          </body>
+       </AudioProvider>
+      </html>
+    </ConvexClerkProvider>
   );
 }
