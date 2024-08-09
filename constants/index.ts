@@ -108,3 +108,18 @@ export const sidebarLinks = [
         "https://lovely-flamingo-139.convex.cloud/api/storage/221ee4bd-435f-42c3-8e98-4a001e0d806e",
     },
   ];
+
+  export const cardData =[
+    {
+      image: "https://i.imgur.com/Ql4jRdB.png",
+      title: "Free User",
+      price: "$0",
+      features: ["Access to upto 2 podcasts", "Can listen upto 30min", ""],
+    },
+    {
+      image: "https://i.imgur.com/pJNFEHR.png",
+      title: "Subscriber",
+      price: "$4.99/Month",
+      features: ["Unlimited Access", "Can make Playlists", "Podcasts can be downloaded"],
+    },
+  ]

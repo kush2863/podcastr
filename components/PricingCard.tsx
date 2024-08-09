@@ -1,0 +1,45 @@
+import { cardData } from '@/constants';
+import React from 'react';
+
+const PricingCard = () => {
+    return (
+        <div className="w-full py-[5rem] md:py-[8rem] px-4 text-gray-900">
+          <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 gap-8 text-white-1">
+            {cardData.map((card, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-xl rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300 border border-orange-1"
+              >
+                
+                <div className="p-6">
+                  <h2 className="text-2xl font-bold text-center py-4">
+                    {card.title}
+                  </h2>
+                  <p className="text-center text-4xl font-extrabold mb-4">{card.price}</p>
+                  <div className="text-center font-medium">
+                    {card.features.map((feature, idx) => (
+                      <p
+                        key={idx}
+                        className={`py-2 border-b ${idx === 0 ? "mt-4" : ""} ${idx === card.features.length - 1 ? "border-none" : ""}`}
+                      >
+                        {feature}
+                      </p>
+                    ))}
+                  </div>
+                  {index !== 0 && ( 
+                                <div className="flex justify-center">
+                                    <button
+                                        className="bg-whitetext-white hover:bg-orange-1 hover:text-white duration-150 w-full rounded-md font-medium my-6 py-3 transition-colors"  >
+                                        Start Trial
+                                    </button>
+                                </div>
+                            )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+};
+
+export default PricingCard;

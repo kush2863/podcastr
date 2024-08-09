@@ -1,8 +1,11 @@
+import PricingCard from '@/components/PricingCard'
 import React from 'react'
 
 const Pricing = () => {
   return (
-    <div>Pricing</div>
+    <div>
+      <PricingCard />
+    </div>
   )
 }
 
